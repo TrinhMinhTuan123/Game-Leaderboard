@@ -7,7 +7,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     // const players = [];
 
-    // for (let i = 0; i < 1000; i++) {
+    // for (let i = 0; i < 2000; i++) {
     //   players.push({
     //     id: faker.string.uuid(),
     //     name: faker.person.fullName(),

@@ -36,7 +36,10 @@ module.exports = {
           },
           score: {
             type: Sequelize.INTEGER,
-            allowNull: false
+            allowNull: false,
+            validate: {
+              min: 0
+            }
           },
           created_at: {
             type: Sequelize.DataTypes.DATE,

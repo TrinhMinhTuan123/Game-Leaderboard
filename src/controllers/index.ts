@@ -1,5 +1,9 @@
 import { CrudController } from './crudController';
 import { PlayerController } from './crud/playerController'
+import { GameModeController } from './crud/gameModeController'
+import { MatchHistoryController } from './crud/matchHistoryController'
+import { LeaderBoardController } from './crud/leaderBoardController'
+
 
 
 
@@ -7,6 +11,9 @@ import { PlayerController } from './crud/playerController'
 
 // Crud
 const playerController = new PlayerController()
+const gameModeController = new GameModeController()
+const matchHistoryController = new MatchHistoryController()
+const leaderBoardController = new LeaderBoardController()
 
 
 
@@ -14,5 +21,8 @@ const playerController = new PlayerController()
 
 export {
   CrudController,
-  playerController
+  playerController,
+  gameModeController,
+  matchHistoryController,
+  leaderBoardController
 };
