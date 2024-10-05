@@ -22,4 +22,9 @@ export default {
     socket: {
         port: 9888
     },
+    redis: {
+        host: process.env.REDIS_HOST_PRODUCTION,
+        port: process.env.REDIS_PORT,
+        password: process.env.REDIS_PASSWORD_PRODUCTION
+    }
 };

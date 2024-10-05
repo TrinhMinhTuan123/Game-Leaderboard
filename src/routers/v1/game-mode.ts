@@ -8,6 +8,5 @@ export default class GameModeRouter extends CrudRouter<typeof gameModeController
 		super(gameModeController)
 	}
 	customRouting() {
-
 	}
 }

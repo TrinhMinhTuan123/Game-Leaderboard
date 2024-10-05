@@ -132,6 +132,9 @@ export class BaseRouter {
       throw errorService.router.requestDataInvalid(validate.message)
     }
   }
+  async haha(body: any, schema: IValidateSchema) {
+    console.log('haha')
+  }
 
   route(func: (req: Request, rep: Response) => Promise<any>) {
     return (req: Request, res: Response) =>
