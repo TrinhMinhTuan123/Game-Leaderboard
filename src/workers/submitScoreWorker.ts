@@ -36,6 +36,7 @@ class ScoreSubmitter {
     }
 
     private async updateLeaderBoard(player_id: string, game_mode_id: string, score: number) {
+
         const leaderBoard: ILeaderBoard = await this.findLeaderBoard(player_id, game_mode_id)
         if (leaderBoard) { // update existing leaderBoard
             await this.updateExistingLeaderBoard(leaderBoard, score);
@@ -49,7 +50,7 @@ class ScoreSubmitter {
             where: { player_id, game_mode_id },
             attributes: ['id', 'total_score', 'player_id', 'game_mode_id'],
             transaction: this.transaction,
-        });
+        }, true);
         return leaderBoard
     }
 

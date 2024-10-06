@@ -25,6 +25,7 @@ export default {
     redis: {
         host: process.env.REDIS_HOST_PRODUCTION,
         port: process.env.REDIS_PORT,
-        password: process.env.REDIS_PASSWORD_PRODUCTION
+        password: process.env.REDIS_PASSWORD_PRODUCTION,
+        cacheTimeDefault: 10
     }
 };

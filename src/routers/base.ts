@@ -1,9 +1,8 @@
 import * as express from 'express';
-import { errorService, utilService } from '@/services';
+import { errorService, utilService, redisService } from '@/services';
 import { ICrudOption } from '@/interfaces';
 import { config } from '@/config';
 import * as _ from 'lodash';
-
 const CHANNEL_ID_NOTIFICATION_GROUP = process.env.CHANNEL_ID_NOTIFICATION_GROUP;
 export interface Request extends express.Request {
   queryInfo?: ICrudOption;
@@ -107,7 +106,7 @@ export class BaseRouter {
     const total = objects.count > 0 ? objects.count : 0;
     // delete objects.count
     const page = _.floor(option.offset / option.limit) + 1;
-    res.json({
+    const result = {
       code: 200,
       results: Object.assign(
         {
@@ -122,7 +121,48 @@ export class BaseRouter {
         prev_page: page - 1,
         limit: option.limit,
       },
-    });
+    }
+    res.json(result);
+  }
+  onSuccessAsListWithCache(
+    res: Response,
+    objects: any = [],
+    extras: any = {},
+    option: ICrudOption = {
+      offset: 0,
+      limit: config.database.defaultPageSize,
+      where: {},
+    },
+    cacheOption: {
+      time: number,
+      key: string
+    }
+  ) {
+    if (objects.toJSON) {
+      objects = objects.toJSON();
+    }
+    const total = objects.count > 0 ? objects.count : 0;
+    // delete objects.count
+    const page = _.floor(option.offset / option.limit) + 1;
+    const result = {
+      code: 200,
+      results: Object.assign(
+        {
+          objects,
+        },
+        extras,
+      ),
+      pagination: {
+        total: total,
+        current_page: page,
+        next_page: page + 1,
+        prev_page: page - 1,
+        limit: option.limit,
+      },
+    }
+    console.log('processing cache')
+    redisService.cache(cacheOption.key, cacheOption.time, result)
+    res.json(result);
   }
 
   async validateJSON(body: any, schema: IValidateSchema) {
@@ -132,10 +172,6 @@ export class BaseRouter {
       throw errorService.router.requestDataInvalid(validate.message)
     }
   }
-  async haha(body: any, schema: IValidateSchema) {
-    console.log('haha')
-  }
-
   route(func: (req: Request, rep: Response) => Promise<any>) {
     return (req: Request, res: Response) =>
       func

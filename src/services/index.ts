@@ -8,6 +8,7 @@ import { PlayerService } from './crud/playerService'
 import { GameModeService } from './crud/gameModeService'
 import { MatchHistoryService } from './crud/matchHistoryService'
 import { LeaderBoardService } from './crud/leaderBoardService'
+import { RedisService } from './redisService'
 // SECTION
 
 const errorService = new ErrorService();
@@ -19,6 +20,8 @@ const playerService = new PlayerService()
 const gameModeService = new GameModeService()
 const matchHistoryService = new MatchHistoryService()
 const leaderBoardService = new LeaderBoardService()
+const redisService = new RedisService()
+
 
 
 
@@ -28,11 +31,12 @@ export {
   CrudService,
   ICrudExecOption,
   utilService,
+  redisService,
   queueService,
   errorService,
   scheduleService,
   playerService,
   gameModeService,
   matchHistoryService,
-  leaderBoardService
+  leaderBoardService,
 };

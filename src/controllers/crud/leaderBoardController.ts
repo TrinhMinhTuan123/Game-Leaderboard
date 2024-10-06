@@ -6,4 +6,8 @@ export class LeaderBoardController extends CrudController<typeof leaderBoardServ
 	constructor() {
 		super(leaderBoardService)
 	}
+	async getTopLeaderBoard(option?: ICrudOption, gameModeId?: string) {
+		const result = await this.service.getTopLeaderBoard(option, gameModeId)
+		return result
+	}
 }
