@@ -1,7 +1,7 @@
 import * as express from 'express';
 import { errorService, utilService, redisService } from '@/services';
 import { ICrudOption } from '@/interfaces';
-import { config } from '@/config';
+import { config } from '../config';
 import * as _ from 'lodash';
 const CHANNEL_ID_NOTIFICATION_GROUP = process.env.CHANNEL_ID_NOTIFICATION_GROUP;
 export interface Request extends express.Request {

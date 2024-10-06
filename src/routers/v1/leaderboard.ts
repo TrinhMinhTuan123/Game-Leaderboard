@@ -1,9 +1,8 @@
-import * as _ from 'lodash'
 import { Request, Response } from '../base'
 import { CrudRouter } from '../crud'
 import { leaderBoardController } from '@/controllers'
 import { queryMiddleware, redisCacheMiddleware } from '@/middlewares'
-import { config } from '@/config'
+import { config } from '../../config'
 
 export default class LeaderBoardRouter extends CrudRouter<typeof leaderBoardController> {
 	constructor() {

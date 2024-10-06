@@ -1,6 +1,6 @@
 import { errorService } from '@/services';
 import { BaseError } from '@/services/errors';
-import { config } from '@/config';
+import { config } from '../config';
 import { sequelize } from '@/models';
 import { ICrudOption } from '@/interfaces';
 import { Transaction, ModelDefined, CreateOptions, DestroyOptions } from 'sequelize';

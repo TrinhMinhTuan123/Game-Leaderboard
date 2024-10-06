@@ -1,7 +1,7 @@
 import { BaseMiddleware } from "./base";
 import * as express from "express";
-import { config } from "@/config";
-import { Request, Response } from "@/routers/base";
+import { config } from "../config";
+import { Request, Response } from "../routers/base";
 import * as _ from "lodash";
 
 export class QueryMiddleware extends BaseMiddleware {

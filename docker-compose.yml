@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/nodejs
+    environment:
+      NODE_ENV: development
+      HOST: mysql_container_game_leaderboard
+      DB_USER: tuan
+      DB_PASSWORD: 123456
+      DB_NAME: game_leaderboard
+      REDIS_HOST: redis-server-game-leaderboard
+    command: npm start
+    networks:
+      - mysql_network
+      - redis-net
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_container_game_leaderboard
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: game_leaderboard
+      MYSQL_USER: tuan
+      MYSQL_PASSWORD: 123456
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./sql_backups/backup_gameleaderboard_061024.sql:/docker-entrypoint-initdb.d/backup.sql
+    networks:
+      - mysql_network
+
+  redis:
+    image: redis:latest
+    container_name: redis-server-game-leaderboard
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - redis-net
+    restart: always
+
+volumes:
+  mysql_data:
+  redis-data:
+    driver: local
+
+networks:
+  mysql_network:
+    driver: bridge
+  redis-net:
+    driver: bridge

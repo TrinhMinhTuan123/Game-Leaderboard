@@ -1,5 +1,5 @@
 const Queue = require('bull');
-import { config } from '@/config';
+import { config } from '../config';
 import { submitScoreProcessor } from '../workers/submitScoreWorker';
 import { ICreateMatchHistory } from '../interfaces';
 

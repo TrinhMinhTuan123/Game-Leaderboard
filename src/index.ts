@@ -1,7 +1,7 @@
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import expressValidator = require("express-validator");
-import { config } from "@/config";
+import { config } from "./config";
 import api from "./routers";
 import * as cors from "cors";
 import { scheduleService } from "./services";

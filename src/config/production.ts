@@ -1,7 +1,4 @@
 import * as dotenv from "dotenv";
-import { config } from "@/config";
-
-const os = require("os");
 const sql = require("./database");
 dotenv.config({ silent: true });
 export default {
