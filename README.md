@@ -55,3 +55,7 @@ To run the application using Docker, execute the following command:
    ```bash
    docker compose up -d
    ```
+
+#### APIs postman document
+
+[API Document URL](https://www.postman.com/dark-space-8177-1/workspace/game-learderboard/collection/3867591-1496b50b-99ee-484e-af4e-4def8d896cac?action=share&creator=3867591&active-environment=3867591-cb84c7b4-31b3-4509-bb65-116b292d9700)
