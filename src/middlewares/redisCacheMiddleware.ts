@@ -8,7 +8,7 @@ export class RedisCacheMiddleware extends BaseMiddleware {
 		req: Request,
 		res: Response,
 		next: NextFunction,
-	): Promise<void> {
+	) {
 		const cacheKey = this.generateCacheKey(req)
 		try {
 			const cachedData = await redisService.getCachedData(cacheKey)

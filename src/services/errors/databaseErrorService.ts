@@ -1,5 +1,5 @@
-import {BaseError} from "./base";
-import {AppExceptionType, HttpStatus} from "@/common/enum";
+import { BaseError } from "./base";
+import { AppExceptionType, HttpStatus } from "@/common/enum";
 class DatabaseErrorService extends BaseError {
   constructor(key: string, message: string, code?: number) {
     super({
@@ -10,8 +10,8 @@ class DatabaseErrorService extends BaseError {
   }
 }
 export class DatabaseExceptionService {
-  public recordNotFound() {
-    return new DatabaseErrorService(AppExceptionType.RECORD_NOT_FOUND, null, HttpStatus.NOT_FOUND);
+  public recordNotFound(message?: string) {
+    return new DatabaseErrorService(message || AppExceptionType.RECORD_NOT_FOUND, null, HttpStatus.NOT_FOUND);
   }
   public queryFail(message?: string) {
     return new DatabaseErrorService(AppExceptionType.QUERY_FAIL, message);

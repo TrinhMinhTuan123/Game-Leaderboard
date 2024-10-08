@@ -24,5 +24,9 @@ export default {
         port: process.env.REDIS_PORT,
         password: process.env.REDIS_PASSWORD,
         cacheTimeDefault: 20
-    }
+    },
+    queue: {
+        concurrency: 10,
+        attempts: 2
+    },
 }

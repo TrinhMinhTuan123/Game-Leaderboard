@@ -7,6 +7,26 @@ if (process.env.NODE_ENV === "production") {
     option = {
         host: config.database.sql['host'],
         dialect: config.database.sql['dialect'],
+        // replication
+        // replication: {
+        //     read: [
+        //         { 
+        //             host: config.database.sql['host_read'], 
+        //             username: config.database.sql['username_read'], 
+        //             password: config.database.sql['password_read'] 
+        //         },
+        //         // { 
+        //         //     host: '', 
+        //         //     username: '', 
+        //         //     password: '' 
+        //         // },
+        //     ],
+        //     write: { 
+        //         host: config.database.sql['host'], 
+        //         username: config.database.sql['username'], 
+        //         password: config.database.sql['password'] 
+        //     },
+        // },
         // default setting
         pool: {
             max: 10,

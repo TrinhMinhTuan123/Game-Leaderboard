@@ -13,7 +13,9 @@ export class QueueService {
     private initializeQueue() {
         try {
             this.scoreQueue = new Queue('scoreQueue', `redis://${config.redis.host}:${config.redis.port}`);
-            this.scoreQueue.process(submitScoreProcessor);
+            const concurrency = config.queue.concurrency;
+            this.scoreQueue.process(concurrency, submitScoreProcessor);
+
             this.logJobCounts();
             this.setupEventListeners();
         } catch (error) {
@@ -38,7 +40,7 @@ export class QueueService {
 
     public async addScoreToQueue(data: ICreateMatchHistory) {
         await this.scoreQueue.add(data, {
-            attempts: 3,  //try again 2 times when failed
+            attempts: config.queue.attempts,//default 2
         });
     }
 }
